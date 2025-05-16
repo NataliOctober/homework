@@ -1,0 +1,3 @@
+echo "max-line-length = 88" >> .flake8
+echo "extend-ignore = E203,W503" >> .flake8
+echo "select = C,E,F,W,B,B950" >> .flake8
