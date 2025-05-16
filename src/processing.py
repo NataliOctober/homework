@@ -31,33 +31,3 @@ data = [{'id': 41428829, 'state': 'EXECUTED', 'date': '2019-07-03T18:35:29.51236
         {'id': 615064591, 'state': 'CANCELED', 'date': '2018-10-14T08:21:33.419441'}]
 print(sort_by_date(data))
 
-def process_data(data: dict) -> dict:
-    """
-    Обрабатывает входные данные и возвращает словарь с замаскированными данными
-
-    :param data: словарь с данными
-    :return: словарь с обработанными данными
-    """
-    processed_data = {}
-
-    for key, value in data.items():
-        if key == "card_number":
-            processed_data[key] = mask_account_card(value)
-        elif key == "account_number":
-            processed_data[key] = get_mask_account(value)
-        elif key == "date":
-            processed_data[key] = get_date(value)
-        else:
-            processed_data[key] = value
-from typing import List, Dict, Optional
-
-
-def filter_by_state(data: ListDict, state: Optionalstr = 'EXECUTED') -> ListDict:
-    """
-    Фильтрует список словарей по значению ключа 'state'
-
-    :param data: список словарей
-    :param state: значение состояния для фильтрации (по умолчанию 'EXECUTED')
-    :return: отфильтрованный список словарей
-    """
-    return [item for item in data if item.get('state') == state]
