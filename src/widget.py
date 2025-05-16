@@ -1,14 +1,24 @@
-# src/widgets.py
-from django.forms.widgets import TextInput
+from datetime import datetime
+from typing import List, Dict, Optional
 
-class CustomTextInput(TextInput):
-    icon = ''
 
-    def render(self, name, value, attrs=None, renderer=None):
-        if self.icon:
-            final_attrs = self.build_attrs(attrs)
-            return f'<div class="input-group">' \
-                   f'<span class="input-group-addon"><img src="{self.icon}" /></span>' \
-                   f'{super().render(name, value, final_attrs)}</div>'
-        else:
-            return super().render(name, value, attrs)
+def sort_by_date(data: ListDict, ascending: Optionalbool = False) -> ListDict:
+    """
+    Сортирует список словарей по дате в формате ISO 8601
+
+    :param data: список словарей с полем 'date'
+    :param ascending: True - по возрастанию, False - по убыванию (по умолчанию)
+    :return: отсортированный список словарей
+    """
+
+    def parse_date(item):
+        date_str = item.get('date')
+
+    if date_str:
+        try:
+            return datetime.fromisoformat(date_str)
+    except ValueError:
+    raise ValueError(f"Неверный формат даты: {date_str}")
+    return None
+
+    return sorted(data, key=parse_date, reverse=not ascending)
