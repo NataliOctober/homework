@@ -49,28 +49,15 @@ def process_data(data: dict) -> dict:
             processed_data[key] = get_date(value)
         else:
             processed_data[key] = value
+from typing import List, Dict, Optional
 
-    return processed_data
 
-
-def validate_data(data: dict) -> bool:
+def filter_by_state(data: ListDict, state: Optionalstr = 'EXECUTED') -> ListDict:
     """
-    Валидирует входные данные
+    Фильтрует список словарей по значению ключа 'state'
 
-    :param data: словарь с данными
-    :return: True если данные валидны, иначе False
+    :param data: список словарей
+    :param state: значение состояния для фильтрации (по умолчанию 'EXECUTED')
+    :return: отфильтрованный список словарей
     """
-    required_fields = {"card_number", "account_number", "date"}
-    if not required_fields.issubset(data.keys()):
-        return False
-
-    if not isinstance(data.get("card_number"), str):
-        return False
-
-    if not isinstance(data.get("account_number"), str):
-        return False
-
-    if not isinstance(data.get("date"), str):
-        return False
-
-    return True
+    return [item for item in data if item.get('state') == state]
