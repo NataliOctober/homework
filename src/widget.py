@@ -2,7 +2,7 @@ from datetime import datetime
 from typing import Optional
 
 
-def sort_by_date(date_string: str, format_string: Optional[str] = '%d.%m.%Y') -> str:
+def get_date(date_string: str, format_string: Optional[str] = '%d.%m.%Y') -> str:
     """
     Форматирует дату из формата ISO 8601 в указанный формат
 
