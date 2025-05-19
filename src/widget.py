@@ -17,40 +17,19 @@ def sort_by_date(date_string: str, format_string: Optional[str] = '%d.%m.%Y') ->
         raise ValueError(f"Неверный формат даты: {date_string}")
 
 
+from masks import mask_card, mask_account
+
+
 def mask_account_card(data: str) -> str:
-        """
-        Маскирует номер карты или счёта в зависимости от типа.
+    """
+    Маскирует номер карты или счёта, используя существующие функции из masks.py
 
-        Принимает строку формата:
-        - "Visa Platinum 7000792289606361"
-        - "Maestro 7000792289606361"
-        - "Счет 73654108430135874305"
+    :param data: входная строка с типом и номером
+    :return: строка с маскированным номером
+    """
+    parts = data.split()
 
-        Возвращает строку с замаскированным номером:
-        - "Visa Platinum 7000 79** **** 6361" для карт
-        - "Счет **4305" для счетов
-
-        :param data: входная строка с типом и номером
-        :return: строка с маскированным номером
-        """
-        parts = data.split()
-
-        # Для счетов
-        if parts[0] == "Счет":
-            account_number = parts[-1]
-            return f"Счет **{account_number[-4:]}"
-
-        # Для карт
-        card_number = parts[-1]
-        card_name = " ".join(parts[:-1])
-
-        # Маскировка карты
-        masked_card = (
-            f"{card_name} "
-            f"{card_number[:4]} "  # первые 4 цифры
-            f"{card_number[4:6]}** "  # следующие 2 цифры и **
-            f"**** "  # четыре звёздочки
-            f"{card_number[-4:]}"  # последние 4 цифры
-        )
-
-        return masked_card
+    if parts[0] == "Счет":
+        return mask_account(data)
+    else:
+        return mask_card(data)
