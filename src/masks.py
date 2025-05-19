@@ -1,23 +1,18 @@
-def get_mask_card_number(card_number: str) -> str:
+from masks import mask_card, mask_account
+
+
+def mask_account_card(data: str) -> str:
     """
-    Маскирует номер банковской карты в формате XXXX XX** **** XXXX
+    Маскирует номер карты или счёта, используя существующие функции из masks.py
 
-    :param card_number: номер карты
-    :return: замаскированный номер карты
+    :param data: входная строка с типом и номером
+    :return: строка с маскированным номером
     """
-    if len(card_number) != 16:
-        raise ValueError("Номер карты должен содержать 16 цифр")
+    parts = data.split()
 
-    return f"{card_number[:4]} {card_number[4:6]}** **** {card_number[-4:]}"
-
-
-def get_mask_account(account_number: str) -> str:
-    """
-    Маскирует номер банковского счета в формате **XXXX
-
-    :param account_number: номер счета
-    :return: замаскированный номер счета
-    """
-    return f"**{account_number[-4:]}"
+    if parts[0] == "Счет":
+        return mask_account(data)
+    else:
+        return mask_card(data)
 
 
