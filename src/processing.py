@@ -21,6 +21,14 @@ def get_transaction_date(tra: dict) -> str:
 
 
 def sort_by_date(data: List[Dict], reverse: bool = True) -> List[Dict]:
+    """
+        Сортирует список транзакций по дате
+
+        :param transactions: список словарей с транзакциями
+        :param ascending: True - по возрастанию, False - по убыванию (по умолчанию)
+        :return: отсортированный список транзакций
+        :raises ValueError: если дата имеет неверный формат
+        """
     result = sorted(data, key=get_transaction_date, reverse=reverse)
     return result
 
