@@ -17,15 +17,14 @@ def filter_by_state(data: List[Dict], state: Optional[str] = 'EXECUTED') -> List
 
 def get_transaction_date(tra: dict) -> str:
     """
-        Извлекает и форматирует дату из словаря транзакции
+       Извлекает и форматирует дату из словаря транзакции
 
-        :param transaction: словарь с данными транзакции
-        :return: отформатированная строка с датой в формате 'день.месяц.год'
-        :raises ValueError: если в транзакции отсутствует ключ 'date'
-        """
+       :param transaction: словарь с данными транзакции
+       :return: отформатированная строка с датой в формате 'день.месяц.год'
+       :raises ValueError: если в транзакции отсутствует ключ 'date'
+       """
     date = tra["date"]
     return date
-
 
 
 def sort_by_date(data: List[Dict], reverse: bool = True) -> List[Dict]:
