@@ -1,9 +1,4 @@
-# src/processing.py
-from src.masks import get_mask_card_number, get_mask_account
-from src.widget import mask_account_card, get_date
-
 from typing import List, Dict, Optional
-
 
 def filter_by_state(data: List[Dict], state: Optional[str] = 'EXECUTED') -> List[Dict]:
     """
@@ -14,6 +9,7 @@ def filter_by_state(data: List[Dict], state: Optional[str] = 'EXECUTED') -> List
     :return: отфильтрованный список словарей
     """
     return [item for item in data if item.get('state') == state]
+
 
 def get_transaction_date(tra: dict) -> str:
     """
@@ -30,7 +26,6 @@ def get_transaction_date(tra: dict) -> str:
 def sort_by_date(data: List[Dict], reverse: bool = True) -> List[Dict]:
     """
         Сортирует список транзакций по дате
-
         :param transactions: список словарей с транзакциями
         :param ascending: True - по возрастанию, False - по убыванию (по умолчанию)
         :return: отсортированный список транзакций

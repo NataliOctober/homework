@@ -1,7 +1,6 @@
 from datetime import datetime
 from typing import Optional
 
-
 def get_date(date_string: str, format_string: Optional[str] = '%d.%m.%Y') -> str:
     """
     Форматирует дату из формата ISO 8601 в указанный формат
@@ -20,7 +19,6 @@ def get_date(date_string: str, format_string: Optional[str] = '%d.%m.%Y') -> str
 def mask_account_card(data: str) -> str:
         """
         Маскирует номер карты или счёта в зависимости от типа.
-
         Принимает строку формата:
         - "Visa Platinum 7000792289606361"
         - "Maestro 7000792289606361"

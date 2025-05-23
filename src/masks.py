@@ -19,5 +19,3 @@ def get_mask_account(account_number: str) -> str:
     :return: замаскированный номер счета
     """
     return f"**{account_number[-4:]}"
-
-
