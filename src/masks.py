@@ -18,4 +18,6 @@ def get_mask_account(account_number: str) -> str:
     :param account_number: номер счета
     :return: замаскированный номер счета
     """
+    if len(account_number) != 20:
+        raise ValueError("Номер счёта должен содержать 20 цифр")
     return f"**{account_number[-4:]}"
